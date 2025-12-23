@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: kimkilha/dairy-science-lab
+  branch: main
+  auth_endpoint: /api/auth
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "gallery"
+    label: "Gallery"
+    folder: "gallery"
+    create: true
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Description (EN)", name: "description_en", widget: "string"}
+      - {label: "설명 (KO)", name: "description_ko", widget: "string"}
