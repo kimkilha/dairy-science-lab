@@ -3,17 +3,21 @@ backend:
   repo: kimkilha/dairy-science-lab
   branch: main
   auth_endpoint: /api/auth
+  base_url: https://dairy-science-lab.netlify.app
+
+site_url: https://dairy-science-lab.netlify.app
+logo_url: https://dairy-science-lab.netlify.app/logo.png
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "index.html"
+        label: "Home Page"
+        name: "home"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Content", name: "content", widget: "markdown"}
 
 media_folder: "public/images"
 public_folder: "/images"
-
-collections:
-  - name: "gallery"
-    label: "Gallery"
-    folder: "gallery"
-    create: true
-    fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Image", name: "image", widget: "image"}
-      - {label: "Description (EN)", name: "description_en", widget: "string"}
-      - {label: "설명 (KO)", name: "description_ko", widget: "string"}
