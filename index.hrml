@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dairy Science Lab | Hankyong National University</title>
+    <style>
+        :root {
+            --primary-color: #2d5a7b;
+            --secondary-color: #f39c12;
+            --accent-color: #27ae60;
+            --light-bg: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --border-color: #ecf0f1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1e3a52 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-sub {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        /* Language Toggle Button */
+        .lang-toggle {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+
+        .lang-toggle:hover {
+            background: #e67e22;
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            background: var(--light-bg);
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: var(--white);
+            font-size: 2.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: var(--white);
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--secondary-color);
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--text-dark);
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        /* List Styles */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .contact-info p {
+            margin: 0;
+        }
+
+        .contact-info strong {
+            color: var(--secondary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div>
+                    <div class="logo" data-ko="유제품과학 실험실" data-en="Dairy Science Lab">Dairy Science Lab</div>
+                    <div class="logo-sub" data-ko="한경국립대학교" data-en="Hankyong National University">Hankyong National University</div>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#about" data-ko="소개" data-en="About">About</a></li>
+                        <li><a href="#research" data-ko="연구" data-en="Research">Research</a></li>
+                        <li><a href="#gallery" data-ko="갤러리" data-en="Gallery">Gallery</a></li>
+                        <li><a href="#members" data-ko="팀" data-en="Members">Members</a></li>
+                        <li><a href="#contact" data-ko="연락처" data-en="Contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="lang-toggle" id="langBtn">한국어 / English</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-ko="유제품과학 실험실" data-en="Dairy Science Lab">Dairy Science Lab</h1>
+            <p data-ko="유산균, 발효, 프로바이오틱스 개발의 선도적 연구" data-en="Advanced Research in Lactic Acid Bacteria, Fermentation, and Probiotic Development">Advanced Research in Lactic Acid Bacteria, Fermentation, and Probiotic Development</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 data-ko="소개" data-en="About Us">About Us</h2>
+            <p data-ko="한경국립대학교 유제품과학 실험실은 유제품 발효, 유산균 동정, 혁신적인 프로바이오틱 식품 개발의 최첨단 연구에 전념하고 있습니다. 우리의 연구는 과학적 발전과 식품산업의 실무적 응용에 기여합니다." data-en="The Dairy Science Lab at Hankyong National University is dedicated to cutting-edge research in dairy fermentation, lactic acid bacteria characterization, and the development of innovative probiotic food products. Our research contributes to both scientific advancement and practical applications in the food industry.">The Dairy Science Lab at Hankyong National University is dedicated to cutting-edge research in dairy fermentation, lactic acid bacteria characterization, and the development of innovative probiotic food products. Our research contributes to both scientific advancement and practical applications in the food industry.</p>
+            
+            <h3 data-ko="실험실 지도교수" data-en="Laboratory Director">Laboratory Director</h3>
+            <p><strong data-ko="김완섭 교수" data-en="Prof. Kim Wanseob">Prof. Kim Wanseob</strong> <span data-ko="- 발효유제품 개발 및 유산균 동정 연구 선도" data-en="- Leading research in fermented dairy product development and bacterial characterization">- Leading research in fermented dairy product development and bacterial characterization</span></p>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="section">
+            <h2 data-ko="연구 분야" data-en="Research Focus">Research Focus</h2>
+            
+            <h3 data-ko="주요 연구 분야" data-en="Main Research Areas">Main Research Areas</h3>
+            <div class="grid">
+                <div class="card">
+                    <h4>🔬 <span data-ko="유산균 특성 동정" data-en="Lactic Acid Bacteria Characterization">Lactic Acid Bacteria Characterization</span></h4>
+                    <p data-ko="Lactobacillus plantarum, L. bulgaricus, Streptococcus thermophilus 등 유산균 동정 및 분석" data-en="Identification and analysis of LAB species including Lactobacillus plantarum, L. bulgaricus, and Streptococcus thermophilus">Identification and analysis of LAB species including Lactobacillus plantarum, L. bulgaricus, and Streptococcus thermophilus</p>
+                </div>
+                <div class="card">
+                    <h4>🥛 <span data-ko="발효유제품 개발" data-en="Fermented Dairy Product Development">Fermented Dairy Product Development</span></h4>
+                    <p data-ko="요거트 및 발효유 혁신, 식물 추출물 첨가 연구" data-en="Innovation in yogurt and fermented milk products, with focus on plant extract incorporation">Innovation in yogurt and fermented milk products, with focus on plant extract incorporation</p>
+                </div>
+                <div class="card">
+                    <h4>⚙️ <span data-ko="대사물질 분석" data-en="Metabolite Analysis">Metabolite Analysis</span></h4>
+                    <p data-ko="고급 분석 기술을 이용한 유산균 대사물질 동정 및 특성화" data-en="Identification and characterization of LAB metabolites using advanced analytical techniques">Identification and characterization of LAB metabolites using advanced analytical techniques</p>
+                </div>
+                <div class="card">
+                    <h4>💊 <span data-ko="프로바이오틱 기능성" data-en="Probiotic Functionality">Probiotic Functionality</span></h4>
+                    <p data-ko="건강 효능이 있는 기능성 프로바이오틱 식품 개발 및 평가" data-en="Development and evaluation of functional probiotic food products with health benefits">Development and evaluation of functional probiotic food products with health benefits</p>
+                </div>
+                <div class="card">
+                    <h4>🧬 <span data-ko="GABA 생성 연구" data-en="GABA Production">GABA Production</span></h4>
+                    <p data-ko="유산균의 감마-아미노부티르산(GABA) 합성 메커니즘 연구" data-en="Research on gamma-aminobutyric acid synthesis mechanisms in lactic acid bacteria">Research on gamma-aminobutyric acid synthesis mechanisms in lactic acid bacteria</p>
+                </div>
+                <div class="card">
+                    <h4>🌿 <span data-ko="장 염증 연구" data-en="Inflammation Studies">Inflammation Studies</span></h4>
+                    <p data-ko="마우스 모델에서 프로바이오틱 중재 및 DSS 유도 대장염 분석" data-en="Probiotic intervention in mouse models and intestinal inflammation analysis using DSS-induced colitis">Probiotic intervention in mouse models and intestinal inflammation analysis using DSS-induced colitis</p>
+                </div>
+            </div>
+
+            <h3 data-ko="주요 균주" data-en="Key Bacterial Strains">Key Bacterial Strains</h3>
+            <ul>
+                <li><strong>Lactobacillus plantarum</strong> <span data-ko="- 항균성이 뛰어난 다목적 균주" data-en="- Versatile strain with antimicrobial properties">- Versatile strain with antimicrobial properties</span></li>
+                <li><strong>L. bulgaricus</strong> <span data-ko="- 전통 요거트 발효 균주" data-en="- Traditional yogurt fermentation strain">- Traditional yogurt fermentation strain</span></li>
+                <li><strong>Streptococcus thermophilus</strong> <span data-ko="- 요거트 생산 공배양 균주" data-en="- Co-culture partner for yogurt production">- Co-culture partner for yogurt production</span></li>
+                <li><strong>Latilactobacillus curvatus</strong> <span data-ko="- 특수 발효용 신규 균주" data-en="- Novel strain for specialized fermentation">- Novel strain for specialized fermentation</span></li>
+            </ul>
+
+            <h3 data-ko="실험 기술" data-en="Experimental Techniques">Experimental Techniques</h3>
+            <div style="margin: 1.5rem 0;">
+                <span class="badge">HPLC (UV Detection)</span>
+                <span class="badge">SDS-PAGE</span>
+                <span class="badge">16S rRNA Sequencing</span>
+                <span class="badge">96-well Plate Assays</span>
+                <span class="badge">Disk Diffusion</span>
+                <span class="badge">DPPH/ABTS Antioxidant</span>
+                <span class="badge">Antimicrobial Testing</span>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="section">
+            <h2 data-ko="갤러리" data-en="Gallery">Gallery</h2>
+            <p data-ko="유제품과학 실험실의 연구 활동 및 실험 장비" data-en="Research activities and experimental equipment at Dairy Science Lab">Research activities and experimental equipment at Dairy Science Lab</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=1" alt="Laboratory">
+                    <div class="gallery-caption" data-ko="실험실 전경" data-en="Laboratory Overview">Laboratory Overview</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=2" alt="HPLC Equipment">
+                    <div class="gallery-caption" data-ko="HPLC 분석 장비" data-en="HPLC Equipment">HPLC Equipment</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=3" alt="Bacterial Culture">
+                    <div class="gallery-caption" data-ko="유산균 배양" data-en="Bacterial Culture">Bacterial Culture</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=4" alt="Fermentation Jars">
+                    <div class="gallery-caption" data-ko="발효용 용기" data-en="Fermentation Vessels">Fermentation Vessels</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=5" alt="Sample Analysis">
+                    <div class="gallery-caption" data-ko="시료 분석" data-en="Sample Analysis">Sample Analysis</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/300/250?random=6" alt="Team Work">
+                    <div class="gallery-caption" data-ko="연구팀 활동" data-en="Team Research">Team Research</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="members" class="section">
+            <h2 data-ko="팀원" data-en="Lab Members">Lab Members</h2>
+            <p data-ko="미생물학, 식품과학, 분석화학 전문가로 구성된 학제적 연구팀입니다." data-en="Our interdisciplinary team brings together expertise in microbiology, food science, and analytical chemistry to advance dairy fermentation research.">Our interdisciplinary team brings together expertise in microbiology, food science, and analytical chemistry to advance dairy fermentation research.</p>
+            
+            <h3 data-ko="대학원생 및 연구원" data-en="Graduate Students & Researchers">Graduate Students & Researchers</h3>
+            <p data-ko="유산균, 발효과학, 프로바이오틱 개발에 관심 있는 연구자를 환영합니다. 실험 설계, 제품 개발, 분석 특성화 등을 연구합니다." data-en="We welcome motivated researchers interested in lactic acid bacteria, fermentation science, and probiotic development. Research areas include experimental design, product development, and analytical characterization.">We welcome motivated researchers interested in lactic acid bacteria, fermentation science, and probiotic development. Research areas include experimental design, product development, and analytical characterization.</p>
+            
+            <h3 data-ko="학부 보조원" data-en="Undergraduate Assistants">Undergraduate Assistants</h3>
+            <p data-ko="학부 학생들은 미생물 배양, 기초 검정, 데이터 분석 등 실험실 실습에 참여합니다." data-en="Undergraduate students participate in practical laboratory work, including microbial cultivation, basic assays, and data analysis to develop hands-on research experience.">Undergraduate students participate in practical laboratory work, including microbial cultivation, basic assays, and data analysis to develop hands-on research experience.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 data-ko="연락처" data-en="Contact & Location">Contact & Location</h2>
+            <div class="contact-info">
+                <p><strong data-ko="이메일" data-en="Email">Email</strong>: 9810kkh@hknu.ac.kr</p>
+                <p><strong data-ko="대학" data-en="University">University</strong>: Hankyong National University</p>
+                <p><strong data-ko="학과" data-en="Department">Department</strong>: Animal Applied Science</p>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: var(--text-light);" data-ko="연구 협력, 대학원 입학, 실험실 방문에 대한 문의는 저희에게 연락하세요." data-en="For inquiries about research collaboration, graduate admission, or lab visits, please contact us.">For inquiries about research collaboration, graduate admission, or lab visits, please contact us.</p>
+        </section>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
+        <div class="lightbox-content">
+            <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dairy Science Lab | Hankyong National University</p>
+            <p style="font-size: 0.9rem; opacity: 0.8;" data-ko="발효과학 및 프로바이오틱 연구 선도" data-en="Advancing Fermentation Science and Probiotic Research">Advancing Fermentation Science and Probiotic Research</p>
+        </div>
+    </footer>
+
+    <!-- Netlify CMS Configuration -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <script>
+        // 언어 설정
+        let currentLang = 'en';
+
+        // 언어 전환 버튼
+        document.getElementById('langBtn').addEventListener('click', function() {
+            currentLang = currentLang === 'en' ? 'ko' : 'en';
+            updateLanguage();
+            this.textContent = currentLang === 'en' ? '한국어 / English' : '한국어 / English';
+        });
+
+        // 언어 업데이트 함수
+        function updateLanguage() {
+            document.querySelectorAll('[data-ko][data-en]').forEach(element => {
+                const text = currentLang === 'ko' ? element.getAttribute('data-ko') : element.getAttribute('data-en');
+                if (element.childNodes.length === 1 && element.childNodes[0].nodeType === 3) {
+                    element.textContent = text;
+                } else if (element.children.length === 0) {
+                    element.textContent = text;
+                } else {
+                    // 자식 요소가 있는 경우 처리
+                    const firstTextNode = Array.from(element.childNodes).find(node => node.nodeType === 3);
+                    if (firstTextNode) {
+                        firstTextNode.textContent = text + ' ';
+                    }
+                }
+            });
+
+            // span 태그 처리
+            document.querySelectorAll('span[data-ko][data-en]').forEach(element => {
+                element.textContent = currentLang === 'ko' ? element.getAttribute('data-ko') : element.getAttribute('data-en');
+            });
+        }
+
+        // 갤러리 Lightbox 함수
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            const caption = element.querySelector('.gallery-caption');
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightboxImg').alt = caption.textContent;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Lightbox 닫기 (배경 클릭 시)
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // ESC 키로 Lightbox 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        // 초기 언어 설정 (기본값: 영어)
+        updateLanguage();
+    </script>
+</body>
+</html>
