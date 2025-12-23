@@ -6,6 +6,9 @@ backend:
 site_url: https://dairy-science-lab.netlify.app
 logo_url: https://dairy-science-lab.netlify.app/logo.png
 
+media_folder: "public/images"
+public_folder: "/images"
+
 collections:
   - name: "pages"
     label: "Pages"
@@ -15,3 +18,4 @@ collections:
         name: "home"
         fields:
           - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
