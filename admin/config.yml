@@ -1,0 +1,17 @@
+backend:
+  name: github
+  repo: kimkilha/dairy-science-lab
+  branch: main
+
+site_url: https://dairy-science-lab.netlify.app
+logo_url: https://dairy-science-lab.netlify.app/logo.png
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "index.html"
+        label: "Home"
+        name: "home"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
