@@ -4,7 +4,6 @@ backend:
   branch: main
 
 site_url: https://dairy-science-lab.netlify.app
-logo_url: https://dairy-science-lab.netlify.app/logo.png
 
 media_folder: "public/images"
 public_folder: "/images"
