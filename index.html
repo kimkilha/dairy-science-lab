@@ -509,40 +509,7 @@
             <p style="font-size: 0.9rem; opacity: 0.8;" data-ko="발효과학 및 프로바이오틱 연구 선도" data-en="Advancing Fermentation Science and Probiotic Research">Advancing Fermentation Science and Probiotic Research</p>
         </div>
     </footer>
-<!-- Admin Panel Button -->
-<button style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: #2d5a7b; color: white; border: none; font-size: 1.5rem; cursor: pointer; z-index: 998; box-shadow: 0 4px 12px rgba(0,0,0,0.2);" id="adminToggle" onclick="toggleAdminPanel()">⚙️</button>
 
-<!-- Admin Panel -->
-<div id="adminPanel" style="position: fixed; top: 100px; right: 20px; width: 350px; background: white; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); z-index: 999; padding: 20px; max-height: 80vh; overflow-y: auto; display: none;">
-    <div style="background: #2d5a7b; color: white; padding: 10px; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0; font-weight: bold;">
-        관리 패널 | Admin Panel
-        <span onclick="toggleAdminPanel()" style="float: right; cursor: pointer;">✕</span>
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <label style="display: block; font-weight: 600; margin-bottom: 5px;">📧 이메일</label>
-        <input type="email" id="adminEmail" placeholder="이메일" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
-        <button onclick="updateEmail()" style="width: 100%; padding: 10px; background: #2d5a7b; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 8px;">저장</button>
-    </div>
-
-    <div style="margin-bottom: 20px;">
-        <label style="display: block; font-weight: 600; margin-bottom: 5px;">📝 소개글</label>
-        <textarea id="adminAbout" placeholder="소개글" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; min-height: 80px;"></textarea>
-        <button onclick="updateAbout()" style="width: 100%; padding: 10px; background: #2d5a7b; color: white; border: none; border-radius: 4px; cursor: pointer; margin-top: 8px;">저장</button>
-    </div>
-
-    <div>
-        <label style="display: block; font-weight: 600; margin-bottom: 5px;">🖼️ 갤러리 사진</label>
-        <div onclick="document.getElementById('imageFile').click()" style="border: 2px dashed #f39c12; padding: 20px; text-align: center; cursor: pointer; border-radius: 4px; background: rgba(243, 156, 18, 0.05);">
-            📁 클릭하거나 드래그
-        </div>
-        <input type="file" id="imageFile" style="display: none;" onchange="uploadImage(event)">
-    </div>
-
-    <div id="adminStatus" style="color: #27ae60; font-weight: 600; text-align: center; margin-top: 15px; display: none;"></div>
-</div>
-
-<script>
 function toggleAdminPanel() {
     const panel = document.getElementById('adminPanel');
     panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
